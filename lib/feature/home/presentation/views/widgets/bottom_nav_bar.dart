@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:zker/core/utils/app_colors.dart';
-import 'package:zker/feature/adan/presentation/views/adan_view.dart';
+import 'package:zker/feature/adan/presentation/views/prayer_times_view.dart';
 import 'package:zker/feature/adan/presentation/views/widgets/prayer_time_body.dart';
 import 'package:zker/feature/adhkar/presentation/views/adhkar_view.dart';
 import 'package:zker/feature/home/presentation/views/home_view.dart';
@@ -17,9 +17,9 @@ class BottomNavBarScreen extends StatefulWidget {
 class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   int selectedIndex = 0;
 
-  final List<IconData> icons = [Icons.home, Icons.person,FlutterIslamicIcons.tasbih3,Icons.abc];
-  final List<String> labels = ['Home', 'Profile',"ازكار","l,مواقيت الصلاه"];
-  final List<Widget> screens = [HomeView(), Test(),AdhkarView(),PrayerTimeBody()];
+  final List<IconData> icons = [Icons.home, Icons.person,FlutterIslamicIcons.tasbih3,FlutterIslamicIcons.allah];
+  final List<String> labels = ['Home', 'Profile',"ازكار","مواقيت الصلاه"];
+  final List<Widget> screens = [HomeView(), Test(),AdhkarView(),PrayerTimesView()];
 
   @override
   Widget build(BuildContext context) {
