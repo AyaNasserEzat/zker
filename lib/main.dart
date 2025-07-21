@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:zker/feature/home/presentation/views/widgets/bottom_nav_bar.dart';
+import 'package:zker/services/notification_services.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  await NotificationServices.init();
+
+
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

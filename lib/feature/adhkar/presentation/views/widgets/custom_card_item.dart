@@ -31,7 +31,7 @@ class _CustomCardItemState extends State<CustomCardItem> {
                          widget.item.id.toString(),
                           style: TextStyle(fontSize: 18),
                         ),
-                        SizedBox(width: 265),
+                       // SizedBox(width: 265),
                         IconButton(onPressed: () => copyText(context, widget.item.text), icon:                         Icon(Icons.copy, size: 20),),
 
                         BlocBuilder<AudioPlayerCubit, AudioPlayerState>(
