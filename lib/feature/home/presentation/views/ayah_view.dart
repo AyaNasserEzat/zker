@@ -2,7 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zker/feature/home/data/repositorys/home_repo_impl.dart';
-import 'package:zker/feature/home/presentation/view_model/ayah_cubit/ayah_cubit.dart' show AyahListCubit;
+import 'package:zker/feature/home/presentation/view_model/ayah_cubit/ayah_cubit.dart'
+    show AyahListCubit;
 import 'package:zker/feature/home/presentation/view_model/ayah_cubit/ayah_state.dart';
 import 'package:zker/services/api_service.dart';
 
@@ -20,8 +21,10 @@ class _AyahViewState extends State<AyahView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => AyahListCubit(HomeRepoImpl(ApiService(Dio())))
-        ..getAyahsBySurahNumber(surahNumber: widget.surahNumber),
+      create:
+          (_) =>
+              AyahListCubit(HomeRepoImpl(ApiService(Dio())))
+                ..getAyahsBySurahNumber(surahNumber: widget.surahNumber),
       child: Scaffold(
         appBar: AppBar(
           title: Text("القرآن الكريم"),
@@ -31,7 +34,7 @@ class _AyahViewState extends State<AyahView> {
               onPressed: () {
                 _showDisplayModeSelector(context);
               },
-            )
+            ),
           ],
         ),
         body: BlocBuilder<AyahListCubit, AyahListState>(
@@ -46,42 +49,28 @@ class _AyahViewState extends State<AyahView> {
               final ayahs = state.ayahs;
 
               if (displayMode == 'moshaf') {
-                // ✅ عرض مصحفي (نص كامل مع أرقام الآيات)
+                final fullText = ayahs.map((ayah) {
+    final cleanText = ayah.text.replaceAll('\n', '').trim();
+    final number = '﴿${ayah.numberInSurah}﴾';
+    return '$cleanText $number';
+  }).join(' ');
+                    
                 return SingleChildScrollView(
                   padding: EdgeInsets.all(16),
-                  child: Directionality(
+                  child:
+                 Directionality(
                     textDirection: TextDirection.rtl,
-                    child: Text.rich(
-                      TextSpan(
-                        children: ayahs.map((ayah) {
-                          return TextSpan(
-                            children: [
-                              TextSpan(
-                                text: ayah.text + " ",
-                                style: TextStyle(fontSize: 24),
-                              ),
-                              WidgetSpan(
-                                alignment: PlaceholderAlignment.middle,
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                  margin: EdgeInsets.symmetric(horizontal: 4),
-                                  decoration: BoxDecoration(
-                                    color: Colors.green[100],
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Text(
-                                    ayah.numberInSurah.toString(),
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.green[900],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                        }).toList(),
+                    child: Text(
+                      fullText,
+                      style: TextStyle(
+                        fontFamily:
+                            'Uthmani', // لازم تكوني ضيفتيه في pubspec.yaml
+                        fontSize: 22,
+                        height: 2,
+                        color: Colors.black,
                       ),
+                     // textAlign: TextAlign.justify,
+                      //softWrap: true,
                     ),
                   ),
                 );
@@ -102,7 +91,6 @@ class _AyahViewState extends State<AyahView> {
                         style: TextStyle(fontSize: 20),
                       ),
                       trailing: Icon(Icons.bookmark_border),
-                     
                     );
                   },
                 );

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:share_plus/share_plus.dart';
 import 'package:zker/core/functions/helper_functions.dart';
 import 'package:zker/core/utils/app_colors.dart';
 
 import 'package:zker/feature/adhkar/data/models/adhkar_item.dart';
-import 'package:zker/feature/adhkar/presentation/view_model/audio_player_cubit/audio_player_cubit.dart';
-import 'package:zker/feature/adhkar/presentation/view_model/audio_player_cubit/audio_player_cubit_state.dart';
 
 class CustomCardItem extends StatefulWidget {
   const CustomCardItem({super.key, required this.item});

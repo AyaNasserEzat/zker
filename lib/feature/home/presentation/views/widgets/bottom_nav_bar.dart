@@ -7,6 +7,8 @@ import 'package:zker/feature/adhkar/presentation/views/adhkar_view.dart';
 import 'package:zker/feature/home/presentation/views/home_view.dart';
 import 'package:zker/feature/home/presentation/views/test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zker/feature/profile/presentation/views/profile_view.dart';
+import 'package:zker/feature/sapha/presentation/views/sapha_view.dart';
 class BottomNavBarScreen extends StatefulWidget {
   const BottomNavBarScreen({super.key});
 
@@ -17,9 +19,9 @@ class BottomNavBarScreen extends StatefulWidget {
 class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   int selectedIndex = 0;
 
-  final List<IconData> icons = [Icons.home, Icons.person,FlutterIslamicIcons.tasbih3,FlutterIslamicIcons.allah];
-  final List<String> labels = ['Home', 'Profile',"ازكار","مواقيت الصلاه"];
-  final List<Widget> screens = [HomeView(), Test(),AdhkarView(),PrayerTimesView()];
+  final List<IconData> icons = [Icons.home, FlutterIslamicIcons.tasbih2,FlutterIslamicIcons.tasbihHand,FlutterIslamicIcons.allah];
+  final List<String> labels = ['Home', 'السبحه',"ازكار","مواقيت الصلاه"];
+  final List<Widget> screens = [HomeView(), SaphaView(),AdhkarView(),PrayerTimesView()];
 
   @override
   Widget build(BuildContext context) {
